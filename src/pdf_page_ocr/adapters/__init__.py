@@ -1,0 +1,1 @@
+"""OCR endpoint adapters."""

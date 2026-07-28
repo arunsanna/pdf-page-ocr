@@ -1,0 +1,45 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pdf-page-ocr"
+version = "0.1.0"
+description = "Pagewise PDF preparation and endpoint-driven OCR artifacts"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+dependencies = [
+  "httpx>=0.27,<1",
+  "pydantic>=2.10,<3",
+  "pillow>=10,<12",
+  "pypdf>=5,<7",
+  "pypdfium2>=4.30,<5",
+  "typer>=0.15,<1",
+]
+
+[dependency-groups]
+dev = [
+  "pytest>=8.3,<9",
+  "pyright>=1.1.390,<2",
+  "ruff>=0.9,<1",
+]
+
+[project.scripts]
+pdf-page-ocr = "pdf_page_ocr.cli:app"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.pyright]
+pythonVersion = "3.11"
+typeCheckingMode = "basic"
+include = ["src"]
